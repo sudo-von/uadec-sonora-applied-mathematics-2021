@@ -1,0 +1,33 @@
+version: '3.1'
+services:
+  mongo:
+    container_name: mongo
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    logging:
+      driver: none
+  database_manager:
+    container_name: mongo-express
+    image: mongo-express
+    restart: always
+    environment:
+      ME_CONFIG_MONGODB_SERVER: mongo
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: root
+      ME_CONFIG_BASICAUTH_USERNAME: root
+      ME_CONFIG_BASICAUTH_PASSWORD: root
+    ports:
+      - 8081:8081
+  populate:
+    container_name: populate
+    build: populate/.
+    depends_on:
+      - mongo
+  stats:
+    container_name: stats
+    build: stats/.
+    depends_on:
+      - populate
