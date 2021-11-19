@@ -24,7 +24,7 @@ def read_file(path):
         break
 
 # Get files from folder.
-for root, dirs, files in os.walk('./databases'):
+for root, dirs, files in os.walk('./data'):
     for file in files:
         # Get path for each file.
         path = os.path.join(root, file)

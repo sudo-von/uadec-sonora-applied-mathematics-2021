@@ -31,3 +31,8 @@ services:
     build: stats/.
     depends_on:
       - populate
+  location:
+    container_name: location
+    build: location/.
+    depends_on:
+      - mongo
