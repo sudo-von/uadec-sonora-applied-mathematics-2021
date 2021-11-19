@@ -19,20 +19,12 @@ services:
       ME_CONFIG_MONGODB_ADMINPASSWORD: root
       ME_CONFIG_BASICAUTH_USERNAME: root
       ME_CONFIG_BASICAUTH_PASSWORD: root
+    logging:
+      driver: none
     ports:
       - 8081:8081
-  populate:
-    container_name: populate
-    build: populate/.
-    depends_on:
-      - mongo
-  stats:
-    container_name: stats
-    build: stats/.
-    depends_on:
-      - populate
-  location:
-    container_name: location
-    build: location/.
+  applied_maths:
+    container_name: applied_maths 
+    build: applied_maths/.
     depends_on:
       - mongo
